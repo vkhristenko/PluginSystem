@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <cstdlib>
 #include <dlfcn.h>
 
 #include "PluginManager/include/Manager.h"
@@ -12,11 +13,13 @@ int main(int argc, char** argv) {
     auto& m = Manager::get();
     std::cout << "manager address = " << &m << std::endl;
 
+    char* cwd = std::getenv("PWD");
+
 #ifdef __APPLE__
     std::string libName = "libplugins.dylib";
     std::string symbName = "doSomething";
 #elif __linux__
-    std::string libName = "libplugins.so";
+    std::string libName = cwd + "/" + "libplugins.so";
     std::string symbName = "doSomething";
 #endif
     std::cout << "libName = " << libName << " symbName = " << symbName << std::endl;
