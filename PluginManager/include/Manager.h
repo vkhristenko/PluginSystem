@@ -9,7 +9,7 @@ class Manager {
 public:
     Manager() = default;
 
-    static Manager& get();
+    static Manager* get();
 
     class PluginBase {
     public:
@@ -25,6 +25,8 @@ public:
     void registerPlugin(PluginBase* plugin, std::string const& pname) {
         std::cout << "Registering plugin " << pname << std::endl;
         m_plugins[pname] = plugin;
+        std::cout << "number of plugins = " << m_plugins.size() << std::endl;
+        std::cout << "address of the manager = " << this << std::endl;
     }
 
     void printPlugins() const {
@@ -33,8 +35,8 @@ public:
                 << kv.second << std::endl;
     }
 
-private:
-    static Manager* m_instance;
+//private:
+//    static Manager* m_instance;
 
 public:
     std::map<std::string, PluginBase*> m_plugins;
