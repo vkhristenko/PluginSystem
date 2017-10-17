@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
     std::string libName = "libplugins.so";
     std::string symbName = "doSomething";
 #endif
+    std::cout << "libName = " << libName << " symbName = " << symbName << std::endl;
+
     void *handle = dlopen(libName.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     std::cout << "plain address = " << dlsym(handle, symbName.c_str()) << std::endl;
     func fff = (func)dlsym(handle, symbName.c_str());
