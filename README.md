@@ -1,1 +1,2 @@
-# PluginManager - implementation of a dynamic plugin manager framework
+# PluginSystem
+Implementation of a dynamic plugin manager framework (Experimentation)
