@@ -12,8 +12,13 @@ int main(int argc, char** argv) {
     auto& m = Manager::get();
     std::cout << "manager address = " << &m << std::endl;
 
+#ifdef __APPLE__
     std::string libName = "libplugins.dylib";
     std::string symbName = "doSomething";
+#elif __linux__
+    std::string libName = "libplugins.so";
+    std::string symbName = "doSomething";
+#endif
     void *handle = dlopen(libName.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     std::cout << "plain address = " << dlsym(handle, symbName.c_str()) << std::endl;
     func fff = (func)dlsym(handle, symbName.c_str());
