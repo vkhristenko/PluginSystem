@@ -13,10 +13,10 @@ INCLUDE_DIR=-I$(PROJECT_DIR)
 all: test libplugins.$(LIB_EXTENSION)
 
 test: test.o $(PROJECT_DIR)/PluginManager/src/Manager.o
-	g++ $(CPPFLAGS) -o test test.o Manager.o
+	g++ $(CPPFLAGS) -o test test.o Manager.o -rdynamic
 
 libplugins.$(LIB_EXTENSION): $(PROJECT_DIR)/TestPlugins/src/Plugin1.o $(PROJECT_DIR)/PluginManager/src/Manager.o
-	g++ $(CPPFLAGS) -shared -o libplugins.$(LIB_EXTENSION) Plugin1.o Manager.o
+	g++ $(CPPFLAGS) -shared -o libplugins.$(LIB_EXTENSION) Plugin1.o Manager.o -rdynamic
 
 #test: test.cc
 #	g++ $(CPPFLAGS) $(INCLUDE_DIR)  $? -o $@
